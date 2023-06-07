@@ -2,13 +2,14 @@ import Filter from './filterModel';
 import * as view from './filterView';
 
 
-export default function () {
+export default function (state) {
 
-    const filter = new Filter();
-    filter.getParams();
+    // создание объекта фильтра
+    if (!state.filter) state.filter = new Filter();
 
-    console.log(filter)
+    // получение параметров для фильтра
+    state.filter.getParams();
 
-    view.render();
+    // view.render();
 
 }

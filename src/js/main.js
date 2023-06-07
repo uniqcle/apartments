@@ -16,6 +16,12 @@ function findComponentByPath(path, routes) {
     return routes.find(route => route.path === path)
 }
 
+const state = {}
+
+// тестирование. После удалить!
+window.state = state;
+
+
 function router() {
     //split path to array
     const pathArray = location.hash.split('/');
@@ -27,7 +33,7 @@ function router() {
     // Chose matching Component from router or Error Page
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {}
 
-    component();
+    component(state);
 }
 
 window.addEventListener('hashchange', router)

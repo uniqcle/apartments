@@ -1,6 +1,6 @@
 import filter from '../filter/filterController'
 
-export default function () {
+export default function (state) {
 
-    filter();
+    filter(state);
 }
