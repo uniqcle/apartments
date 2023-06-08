@@ -1,4 +1,27 @@
-export function render() {
+export function render(params) {
+
+    console.log(params)
+
+    let complexName = '';
+    params.complexNames.forEach(name => {
+        complexName += `<option value="${name}">ЖК ${name}</option>`
+    })
+
+    let rooms = '';
+    params.roomValues.forEach(room => {
+        rooms += `
+        <input
+            name="rooms"
+            type="checkbox"
+            id="rooms_${room}"
+            class="rooms__checkbox"
+            value="${room}"
+        />
+        <label for="rooms_${room}" class="rooms__btn">${room}</label>
+        `
+    })
+
+
     const markup = `
         <!-- Filter -->
         <form method="GET" class="container p-0">
@@ -8,53 +31,13 @@ export function render() {
                     <div class="filter__label">Выбор проекта:</div>
                     <select name="complex" id="" class="filter__dropdown">
                         <option value="all">Все проекты</option>
-                        <option value="Генеральский"
-                            >ЖК Генеральский</option
-                        >
-                        <option value="Речной">ЖК Речной</option>
-                        <option value="Лесной">ЖК Лесной</option>
-                        <option value="Квантум">ЖК Квантум</option>
+                        ${complexName}
                     </select>
                 </div>
                 <div class="filter__col rooms">
                     <div class="filter__label">Комнат:</div>
                     <div class="rooms__wrapper">
-                        <input
-                            name="rooms"
-                            type="checkbox"
-                            id="rooms_1"
-                            class="rooms__checkbox"
-                            value="1"
-                        /><label for="rooms_1" class="rooms__btn">1</label>
-                        <input
-                            name="rooms"
-                            type="checkbox"
-                            id="rooms_2"
-                            class="rooms__checkbox"
-                            value="2"
-                            checked
-                        /><label for="rooms_2" class="rooms__btn">2</label>
-                        <input
-                            name="rooms"
-                            type="checkbox"
-                            id="rooms_3"
-                            class="rooms__checkbox"
-                            value="3"
-                        /><label for="rooms_3" class="rooms__btn">3</label>
-                        <input
-                            name="rooms"
-                            type="checkbox"
-                            id="rooms_4"
-                            class="rooms__checkbox"
-                            value="4"
-                        /><label for="rooms_4" class="rooms__btn">4</label>
-                        <input
-                            name="rooms"
-                            type="checkbox"
-                            id="rooms_5"
-                            class="rooms__checkbox"
-                            value="5"
-                        /><label for="rooms_5" class="rooms__btn">5</label>
+                        ${rooms}
                     </div>
                 </div>
                 <div class="filter__col">
@@ -67,7 +50,8 @@ export function render() {
                                 min="0"
                                 type="number"
                                 class="range__input"
-                                placeholder="38"
+                                placeholder="${params.squareMin}"
+                                value="${params.squareMin}"
                             />
                             <div class="range__value">м2</div>
                         </label>
@@ -78,7 +62,8 @@ export function render() {
                                 min="0"
                                 type="number"
                                 class="range__input"
-                                placeholder="120"
+                                placeholder="${params.squareMax}"
+                                value="${params.squareMax}"
                             />
                             <div class="range__value">м2</div>
                         </label>
@@ -94,7 +79,8 @@ export function render() {
                                 name="pricemin"
                                 min="0"
                                 class="range__input range__input--price"
-                                placeholder="2325000"
+                                placeholder="${params.priceMin}"
+                                value="${params.priceMin}"
                             />
                             <div class="range__value">₽</div>
                         </div>
@@ -105,7 +91,8 @@ export function render() {
                                 name="pricemax"
                                 min="0"
                                 class="range__input range__input--price"
-                                placeholder="4525000"
+                                placeholder="${params.priceMax}"
+                                value="${params.priceMax}"
                             />
                             <div class="range__value">₽</div>
                         </div>
