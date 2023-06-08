@@ -13,4 +13,10 @@ export default async function (state) {
     //отрисовка фильтра
     view.render(state.filter.params);
 
+    // получаем все объекты с сервера
+    await state.filter.getObjects();
+
+    // Обновляем счетчик на кнопке "Показать объекты"
+    view.changeButtonTextShowObjects(state.filter.objects.length)
+
 }

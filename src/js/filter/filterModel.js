@@ -15,6 +15,19 @@ export default class Filter {
         } catch (error) {
             alert(error)
         }
+    }
 
+    // получение всех объектов по api
+    async getObjects() {
+
+        try {
+            const queryString = 'https://jsproject.webcademy.ru/items';
+            const response = await fetch(queryString);
+            const data = await response.json();
+            this.objects = await data;
+
+        } catch (e) {
+            alert(error)
+        }
     }
 }
