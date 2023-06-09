@@ -17,6 +17,16 @@ export default async function (state) {
     await state.filter.getObjects();
 
     // Обновляем счетчик на кнопке "Показать объекты"
-    view.changeButtonTextShowObjects(state.filter.objects.length)
+    view.changeButtonTextShowObjects(state.filter.objects.length);
+
+    // прослушка изменений формы
+    const filterForm = document.querySelector('#filter-form')
+    filterForm.addEventListener('change', function (e) {
+        e.preventDefault();
+
+        state.filter.queryString = view.getInput();
+
+        console.log(state.filter.queryString)
+    })
 
 }

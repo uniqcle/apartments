@@ -1,3 +1,12 @@
+// URLSearch Params не во всех браузерах присутствует, подэтому подключаем
+import 'url-search-params-polyfill';
+
+const elements = {
+    filterSelect: document.getElementsByClassName('filter__dropdown'),
+    filterRooms: document.getElementsByClassName('rooms__checkbox'),
+    filterFields: document.getElementsByClassName('range__input')
+}
+
 export function render(params) {
 
     console.log(params)
@@ -24,7 +33,7 @@ export function render(params) {
 
     const markup = `
         <!-- Filter -->
-        <form method="GET" class="container p-0">
+        <form id="filter-form" method="GET" class="container p-0">
             <div class="heading-1">Выбор квартир:</div>
             <div class="filter">
                 <div class="filter__col">
@@ -112,4 +121,58 @@ export function render(params) {
 
 export function changeButtonTextShowObjects(count) {
     document.querySelector('.filter__show').innerText = `Показать ${count} объектов`;
+}
+
+// получаем все данные из формы
+export function getInput() {
+    // URLSearchParams формируем сразу строчку для запроса
+    // берем сразу данные из формы и формируем строчку
+    const searchParams = new URLSearchParams();
+
+    //searchParams.append(name, value)
+    // console.log(searchParams.get(filterSelect.name))
+
+    //1. Значение с select
+    const filterSelect = elements.filterSelect[0];
+
+    if (filterSelect.value !== 'all') {
+        searchParams.append(
+            filterSelect.name,
+            filterSelect.value
+        )
+    }
+
+    //2. Параметры комнат checkboxes
+    const roomValues = [];
+
+    Array.from(elements.filterRooms).forEach(room => {
+        if (room.value !== '' && room.checked) {
+            roomValues.push(room.value)
+        }
+    })
+
+    const roomValuesString = roomValues.join(',')
+
+    if (roomValuesString !== '') {
+        searchParams.append('rooms', roomValuesString)
+    }
+
+
+    //3. Получение всех инпутов (площадь и цена)
+    Array.from(elements.filterFields).forEach(input => {
+
+        if (input.value !== '') {
+            searchParams.append(input.name, input.value)
+        }
+
+    })
+
+    const queryString = searchParams.toString();
+
+    if (queryString) {
+        return '?' + queryString
+    } else {
+        return ''
+    }
+
 }
