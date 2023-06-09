@@ -22,6 +22,8 @@ export default async function (state) {
     // прослушка изменений формы
     const filterForm = document.querySelector('#filter-form');
 
+
+    // при изменениях данных формы
     filterForm.addEventListener('change', async function (e) {
         e.preventDefault();
 
@@ -32,6 +34,25 @@ export default async function (state) {
         view.changeButtonTextShowObjects(state.filter.objects.length);
 
         console.log(state.filter.objects)
+    })
+
+
+    // при сбросе формы
+    filterForm.addEventListener('reset', async function () {
+
+        state.filter.query = '';
+        // получаем все объекты с сервера
+        await state.filter.getObjects();
+        // Обновляем счетчик на кнопке "Показать объекты"
+        view.changeButtonTextShowObjects(state.filter.objects.length);
+
+    })
+
+    // при отправке формы
+    filterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        console.log('submit!!!')
     })
 
 }

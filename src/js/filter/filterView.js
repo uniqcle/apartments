@@ -4,7 +4,8 @@ import 'url-search-params-polyfill';
 const elements = {
     filterSelect: document.getElementsByClassName('filter__dropdown'),
     filterRooms: document.getElementsByClassName('rooms__checkbox'),
-    filterFields: document.getElementsByClassName('range__input')
+    filterFields: document.getElementsByClassName('range__input'),
+    btnShow: document.getElementsByClassName('filter__show')
 }
 
 export function render(params) {
@@ -110,7 +111,7 @@ export function render(params) {
             </div>
             <div class="filter__buttons">
                 <button class="filter__show">Показать объекты</button>
-                <button class="filter__reset">Сбросить фильтр</button>
+                <button class="filter__reset" type="reset">Сбросить фильтр</button>
             </div>
         </form>
         <!-- // Filter -->
@@ -120,7 +121,19 @@ export function render(params) {
 }
 
 export function changeButtonTextShowObjects(count) {
-    document.querySelector('.filter__show').innerText = `Показать ${count} объектов`;
+
+    let message;
+
+    if (count == 0) {
+        message = 'Объекты не найдены';
+        elements.btnShow[0].disabled = true;
+    } else {
+        message = `Показать ${count} объектов`;
+        elements.btnShow[0].disabled = false;
+    }
+
+    elements.btnShow[0].innerText = message;
+
 }
 
 // получаем все данные из формы
