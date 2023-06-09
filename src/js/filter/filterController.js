@@ -20,13 +20,18 @@ export default async function (state) {
     view.changeButtonTextShowObjects(state.filter.objects.length);
 
     // прослушка изменений формы
-    const filterForm = document.querySelector('#filter-form')
-    filterForm.addEventListener('change', function (e) {
+    const filterForm = document.querySelector('#filter-form');
+
+    filterForm.addEventListener('change', async function (e) {
         e.preventDefault();
 
-        state.filter.queryString = view.getInput();
+        state.filter.query = view.getInput();
 
-        console.log(state.filter.queryString)
+        await state.filter.getObjects();
+
+        view.changeButtonTextShowObjects(state.filter.objects.length);
+
+        console.log(state.filter.objects)
     })
 
 }

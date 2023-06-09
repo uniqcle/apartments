@@ -1,6 +1,6 @@
 export default class Filter {
     constructor() {
-
+        this.query = '';
     }
 
     // получаем необходимые значения для фильтра API
@@ -21,7 +21,7 @@ export default class Filter {
     async getObjects() {
 
         try {
-            const queryString = 'https://jsproject.webcademy.ru/items';
+            const queryString = `https://jsproject.webcademy.ru/items${this.query}`;
             const response = await fetch(queryString);
             const data = await response.json();
             this.objects = await data;
