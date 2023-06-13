@@ -29,7 +29,11 @@ export default async function (state) {
 
         state.filter.query = view.getInput();
 
+        // записали данные в state.filter.objects
         await state.filter.getObjects();
+
+        // сохранили из state.filter.objects в state.objects
+        state.objects = state.filter.objects
 
         view.changeButtonTextShowObjects(state.filter.objects.length);
 

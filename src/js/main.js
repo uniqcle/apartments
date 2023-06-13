@@ -23,7 +23,7 @@ const state = {
 }
 
 // тестирование. После удалить!
-window.state = state;
+//window.state = state;
 
 
 function router() {
