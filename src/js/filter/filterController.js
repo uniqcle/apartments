@@ -39,7 +39,6 @@ export default async function (state) {
 
         view.changeButtonTextShowObjects(state.filter.objects.length);
 
-        console.log(state.filter.objects)
     })
 
 

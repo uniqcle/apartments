@@ -10,8 +10,6 @@ const elements = {
 
 export function render(params) {
 
-    console.log(params)
-
     let complexName = '';
     params.complexNames.forEach(name => {
         complexName += `<option value="${name}">ЖК ${name}</option>`
