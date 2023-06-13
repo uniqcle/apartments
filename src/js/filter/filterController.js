@@ -52,7 +52,7 @@ export default async function (state) {
     filterForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        console.log('submit!!!')
+        state.emitter.emit('event:render-listing', {});
     })
 
 }

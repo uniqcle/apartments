@@ -3,6 +3,7 @@ import itemPage from './pages/itemPage'
 import favouritesPage from './pages/favouritesPage'
 import bidsPage from './pages/bidsPage'
 import errorPage from './pages/errorPage'
+import EventEmitter from './utils/EventEmitter';
 
 // routes 
 const routes = [
@@ -16,7 +17,10 @@ function findComponentByPath(path, routes) {
     return routes.find(route => route.path === path)
 }
 
-const state = {}
+const state = {
+    objects: [],
+    emitter: new EventEmitter()
+}
 
 // тестирование. После удалить!
 window.state = state;
