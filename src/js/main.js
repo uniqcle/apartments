@@ -34,6 +34,9 @@ function router() {
     let currentPath = pathArray[0] === '' ? '/' : pathArray[1];
     currentPath = currentPath === '' ? '/' : currentPath;
 
+    //save route params
+    state.routeParams = pathArray[2] ? pathArray[2] : '';
+
     // Chose matching Component from router or Error Page
     const { component = errorPage } = findComponentByPath(currentPath, routes) || {}
 
