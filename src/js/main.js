@@ -4,6 +4,7 @@ import favouritesPage from './pages/favouritesPage'
 import bidsPage from './pages/bidsPage'
 import errorPage from './pages/errorPage'
 import EventEmitter from './utils/EventEmitter';
+import Favourites from './favourites/favouritesModel';
 
 // routes 
 const routes = [
@@ -19,11 +20,12 @@ function findComponentByPath(path, routes) {
 
 const state = {
     objects: [],
-    emitter: new EventEmitter()
+    emitter: new EventEmitter(),
+    favourites: new Favourites()
 }
 
 // тестирование. После удалить!
-//window.state = state;
+window.state = state;
 
 
 function router() {
