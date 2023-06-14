@@ -30,10 +30,20 @@ export default async function (state) {
         } else {
             view.hideModal();
         }
-
-
-
     })
+
+    // Отправка формы. Модальное окно
+    document.querySelector('.modal__form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const formData = view.getInputModalForm();
+
+        // Вызываем метод отправки данных и запись в объект singleItem
+        await state.singleItem.submitForm(formData);
+
+        console.log(state.singleItem.response)
+
+    });
 
 
 }

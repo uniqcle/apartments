@@ -180,3 +180,11 @@ export function showModal() {
 export function hideModal() {
     document.querySelector('.modal-wrapper').classList.add('none')
 }
+
+export function getInputModalForm() {
+    const formData = {}
+    formData.name = document.querySelector('#form-name').value;
+    formData.phone = document.querySelector('#form-phone').value;
+
+    return formData;
+}
