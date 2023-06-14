@@ -43,6 +43,18 @@ export default async function (state) {
 
         console.log(state.singleItem.response)
 
+        if (state.singleItem.response.message === "Bid Created") {
+            alert('Ваша заявка успешно получена')
+            view.hideModal();
+            view.clearInput();
+
+        } else if (state.singleItem.response.message === "Bid Not Created") {
+
+            state.singleItem.response.errors.forEach(err => {
+                alert(err)
+            })
+        }
+
     });
 
 

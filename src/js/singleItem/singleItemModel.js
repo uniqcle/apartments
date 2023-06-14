@@ -32,6 +32,8 @@ export default class SingleItem {
             const data = await response.json();
             this.response = await data;
 
+            
+
         } catch (e) {
             alert(e)
         }
