@@ -30,14 +30,14 @@ export function render(object) {
                             <div class="object__desc-art">${object.scu}</div>
 
                             <!-- Добавить в избранное -->
-                            <button class="button-favourite">
+                            <button class="button-favourite" id="addToFavouriteBtn">
                                 <i class="fas fa-heart"></i> <span>В избранное</span>
                             </button>
 
                             <!-- В Избранном -->
-                            <button class="button-favourite button-favourite--active">
+                            <!-- <button class="button-favourite button-favourite--active">
                                 <i class="fas fa-heart"></i> <span>В избранном</span>
-                            </button>
+                            </button> --> 
 
                         </div>
 

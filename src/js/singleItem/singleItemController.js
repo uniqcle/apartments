@@ -57,5 +57,12 @@ export default async function (state) {
 
     });
 
+    // клик по кнопке добавить в избранное
+    document.querySelector('#addToFavouriteBtn').addEventListener('click', function (e) {
+
+        // добавляем id текущ. данной страницы
+        state.favourites.toggleFav(state.singleItem.objectItem.id);
+    })
+
 
 }
