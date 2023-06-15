@@ -8,7 +8,10 @@ export default async function (state) {
     // получаем данные с сервера
     await state.singleItem.getItem();
 
-    view.render(state.singleItem.objectItem);
+    view.render(
+        state.singleItem.objectItem, // объект
+        state.favourites.isFav(state.singleItem.id) // объект в избранном или нет
+    );
 
     // запускаем прослушку событий
     // 1. Открытие модального окна
@@ -61,7 +64,12 @@ export default async function (state) {
     document.querySelector('#addToFavouriteBtn').addEventListener('click', function (e) {
 
         // добавляем id текущ. данной страницы
-        state.favourites.toggleFav(state.singleItem.objectItem.id);
+        state.favourites.toggleFav(state.singleItem.id);
+
+        // проверка в избранном или нет
+        const isFaved = state.favourites.isFav(state.singleItem.id)
+
+        view.toggleFavouriteButton(isFaved)
     })
 
 

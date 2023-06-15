@@ -1,4 +1,6 @@
-export function render(object) {
+export function render(object, isFaved) {
+
+    console.log(isFaved)
 
     const appContainer = document.querySelector('#app')
     const markup = `
@@ -30,13 +32,15 @@ export function render(object) {
                             <div class="object__desc-art">${object.scu}</div>
 
                             <!-- Добавить в избранное -->
-                            <button class="button-favourite" id="addToFavouriteBtn">
+                            <button class="button-favourite ${isFaved ? 'button-favourite--active' : ''}" id="addToFavouriteBtn">
                                 <i class="fas fa-heart"></i> <span>В избранное</span>
                             </button>
 
                             <!-- В Избранном -->
                             <!-- <button class="button-favourite button-favourite--active">
-                                <i class="fas fa-heart"></i> <span>В избранном</span>
+                                <i class="fas fa-heart"></i> <span>
+                                ${isFaved ? 'В избранном' : 'В избранное'}
+                                </span>
                             </button> --> 
 
                         </div>
@@ -192,4 +196,16 @@ export function getInputModalForm() {
 export function clearInput() {
     document.querySelector('#form-name').value = '';
     document.querySelector('#form-phone').value = '';
+}
+
+export function toggleFavouriteButton(isFaved) {
+    const btn = document.querySelector('#addToFavouriteBtn');
+
+    if (isFaved) {
+        btn.classList.add('button-favourite--active');
+        btn.querySelector('span').textContent = 'В избранном'
+    } else {
+        btn.classList.remove('button-favourite--active');
+        btn.querySelector('span').textContent = 'В избранное'
+    }
 }
