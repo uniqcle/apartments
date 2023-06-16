@@ -4,5 +4,5 @@ export default function () {
 
     document.querySelector('#app').innerHTML = '';
 
-    favouritesCards();
+    favouritesCards(state);
 }
